@@ -1,12 +1,13 @@
 var express = require('express');
-var router = express.Router();
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://aiiyoh:aiiyoh@apollo.modulusmongo.net:27017/ozE6nori", {native_parser:true});
+'use strict';
 
+var router = express.Router();
 
 router.get('/', function (req, res) {
-    res.render('index', {title: 'SecureSign', body:''});
-    console.log(db.collection('userlist').find());
+	var id = req.body.personID;
+	var url = req.body.imageURL;
+	var isAuthenticated = test(id, url); 
+    res.send(isAuthenticated.toString());
 });
 
 module.exports=router;
