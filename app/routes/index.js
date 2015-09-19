@@ -20,6 +20,16 @@ router.get('/', function (req, res) {
     if (err) console.log(err);
       // results is an array consisting of messages collected during execution
       console.log('results: %j', results);
+      var options_add = {
+        mode: 'text',
+        scriptPath: './python',
+        pythonOptions: ['-u'],
+        args: ['--userid '+req.body.personID, "--imgurl "+req.body.imageURL, "--add", "--is_pos"],
+        };
+        PythonShell.run('train_models.py', options_add, function (err, results) {
+            if (err) console.log(err);
+            console.log('image added to training set');
+        });
     });
     res.render("index", {title:"asldijaslidj"});
 });

@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-#from trainer import Predictor
+from trainer import Predictor
 
 parser = ArgumentParser()
 parser.add_argument("--userid", type=str)
@@ -10,7 +10,7 @@ parser.add_argument("--is_pos", action='store_true')
 args = parser.parse_args()
 userid = args.userid
 imgurl = args.imgurl
-#predictor = Predictor(userid)
+predictor = Predictor(userid)
 
 pos_file = "../data/" + userid + ".pos"
 neg_file = "../data/all_data"
